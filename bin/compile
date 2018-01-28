@@ -17,7 +17,7 @@ failed() {
   sed -u 's/^/ !     /'
 }
 
-APT_DIR="$HOME/.apt"
+APT_DIR="$BUILD_DIR/.apt"
 LIBREOFFICE_DIR="$APT_DIR/usr/lib/libreoffice"
 
 echo "Setting up libreoffice environment" | arrow
