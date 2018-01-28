@@ -5,35 +5,13 @@ set -e
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-indent() {
-  sed -u 's/^/       /'
-}
-
 arrow() {
   sed -u 's/^/-----> /'
 }
 
-failed() {
-  sed -u 's/^/ !     /'
-}
-
-APT_DIR="$BUILD_DIR/.apt"
-LIBREOFFICE_DIR="$APT_DIR/usr/lib/libreoffice"
-
-echo "Setting up libreoffice environment" | arrow
-
-if [ -d $LIBREOFFICE_DIR ]; then
-  # This is required for docsplit to work. Docsplit looks in /app/vendor
-  ln -sf $LIBREOFFICE_DIR "$HOME/vendor/libreoffice"
-  echo "Linking libreoffice directory to vendor" | indent
-else
-  echo "Could not find libreoffice directory. Searched in $APT_DIR/usr/lib" | failed
-  exit 1
-fi
-
-echo "LibreOffice: Setting PATH and LD_LIBRARY_PATH" | indent
+echo "LibreOffice: Setting PATH" | arrow
 PROFILE_PATH="$BUILD_DIR/.profile.d/libreoffice.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 
 # add vendor binaries to the path
-echo 'export PATH="$HOME/vendor/libreoffice/program:$PATH"' >> $PROFILE_PATH
+echo 'export OFFICE_PATH="$HOME/.apt/usr/lib/libreoffice"' >> $PROFILE_PATH
