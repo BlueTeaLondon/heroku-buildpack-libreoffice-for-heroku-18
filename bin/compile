@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -e
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+arrow() {
+  sed -u 's/^/------>/'
+}
+
+failed() {
+  sed -u 's/^/ !     /'
+}
+
+APT_DIR="$BUILD_DIR/.apt"
+BINARY="$APT_DIR/usr/bin/libreoffice"
+
+echo "Setting up libreoffice environment" | arrow
+
+if [ -x $BINARY ]; then
+  ln -sf $BINARY "$BUILD_DIR/vendor/libreoffice"
+  echo "Linked libreoffice binary to vendor" | indent
+else
+  echo "Could not find libreoffice binary. Searched in $BINARY" | failed
+  exit 1
+fi
+
+echo "LibreOffice: Setting PATH and LD_LIBRARY_PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/libreoffice.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+
+# add vendor binaries to the path
+echo 'export PATH="$HOME/vendor/libreoffice:$PATH"' >> $PROFILE_PATH
