@@ -6,15 +6,15 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 indent() {
-  sed -u 's/^/       /'
+  sed -u 's/^/      /'
 }
 
 arrow() {
-  sed -u 's/^/------>/'
+  sed -u 's/^/----->/'
 }
 
 failed() {
-  sed -u 's/^/ !     /'
+  sed -u 's/^/ !    /'
 }
 
 APT_DIR="$BUILD_DIR/.apt"
@@ -23,8 +23,8 @@ BINARY="$APT_DIR/usr/bin/libreoffice"
 echo "Setting up libreoffice environment" | arrow
 
 if [ -x $BINARY ]; then
-  ln -sf $BINARY "$BUILD_DIR/vendor/libreoffice"
-  echo "Linked libreoffice binary to vendor" | indent
+  mv $BINARY "$BUILD_DIR/vendor/libreoffice"
+  echo "Moved libreoffice binary to vendor" | indent
 else
   echo "Could not find libreoffice binary. Searched in $BINARY" | failed
   exit 1
