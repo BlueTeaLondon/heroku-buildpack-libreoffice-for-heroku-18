@@ -14,4 +14,10 @@ Create an `Aptfile` at the project root
 :repo:deb http://http.us.debian.org/debian stretch main
 
 libreoffice
+libxinerama-dev
+libgl1-mesa-dev
+libglu1-mesa-dev
+libxdamage-dev
+libsm6
+libice6
 ```
