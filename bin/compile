@@ -4,6 +4,7 @@ set -e
 
 BUILD_DIR=$1
 CACHE_DIR=$2
+APT_DIR=$BUILD_DIR/.apt
 
 arrow() {
   sed -u 's/^/-----> /'
@@ -15,3 +16,7 @@ mkdir -p $(dirname $PROFILE_PATH)
 
 # add vendor binaries to the path
 echo 'export OFFICE_PATH="$HOME/.apt/usr/lib/libreoffice"' >> $PROFILE_PATH
+
+ln -vs $APT_DIR/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1 $APT_DIR/usr/lib/x86_64-linux-gnu/libGL.so.1
+ln -vs $APT_DIR/usr/lib/libreoffice/program/*.so $APT_DIR/usr/lib/x86_64-linux-gnu
+
