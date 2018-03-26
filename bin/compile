@@ -17,6 +17,9 @@ mkdir -p $(dirname $PROFILE_PATH)
 # add vendor binaries to the path
 echo 'export OFFICE_PATH="$HOME/.apt/usr/lib/libreoffice"' >> $PROFILE_PATH
 
-cp -rv $APT_DIR/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1 $APT_DIR/usr/lib/x86_64-linux-gnu/libGL.so.1
-cp -rv $APT_DIR/usr/lib/libreoffice/program/*.so $APT_DIR/usr/lib/x86_64-linux-gnu
+cd $APT_DIR/usr/lib/x86_64-linux-gnu/
+ln -sv mesa/libGL.so.1 .
+
+cd $APT_DIR/usr/lib/x86_64-linux-gnu
+ln -sv ../libreoffice/program/*.so .
 
