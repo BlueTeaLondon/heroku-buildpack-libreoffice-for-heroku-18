@@ -9,7 +9,7 @@ heroku buildpacks:add --index 1 https://github.com/heroku/heroku-buildpack-apt.g
 
 Add our LibreOffice buildpack to your project:
 ```
-heroku buildpacks:add --index 2 https://github.com/BlueTeaLondon/heroku-buildpack-libreoffice.git
+heroku buildpacks:add --index 2 https://github.com/BlueTeaLondon/heroku-buildpack-libreoffice-for-heroku-16.git
 ```
 
 Create an `Aptfile` file in your project root with the following content only:
