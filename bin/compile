@@ -14,7 +14,7 @@ echo "LibreOffice: Setting PATH" | arrow
 PROFILE_PATH="$BUILD_DIR/.profile.d/libreoffice.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 
-# add vendor binaries to the path
+# Add vendor binaries to the path
 echo 'export OFFICE_PATH="$HOME/.apt/usr/lib/libreoffice"' >> $PROFILE_PATH
 
 cd $APT_DIR/usr/lib/x86_64-linux-gnu/
@@ -22,4 +22,3 @@ ln -sv mesa/libGL.so.1 .
 
 cd $APT_DIR/usr/lib/x86_64-linux-gnu
 ln -sv ../libreoffice/program/*.so .
-
