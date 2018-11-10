@@ -14,7 +14,6 @@ heroku buildpacks:add --index 2 https://github.com/BlueTeaLondon/heroku-buildpac
 
 Create an `Aptfile` file in your project root with the following content only:
 ```
-:repo:deb http://ppa.launchpad.net/libreoffice/libreoffice-6-1/ubuntu bionic main
 libreoffice
 libharfbuzz0b
 libharfbuzz-icu0
