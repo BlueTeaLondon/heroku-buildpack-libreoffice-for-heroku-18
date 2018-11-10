@@ -1,21 +1,39 @@
-#!/bin/bash
+#!/bin/sh
 
-set -e
+set -ex
 
 BUILD_DIR=$1
-CACHE_DIR=$2
 APT_DIR=$BUILD_DIR/.apt
+VENDOR_DIR="$BUILD_DIR/vendor"
+mkdir -p $VENDOR_DIR
+INSTALL_DIR="$VENDOR_DIR/libreoffice"
+mkdir -p $INSTALL_DIR
+CACHE_DIR=$2 # the contents of CACHE_DIR are persisted between builds
 
-arrow() {
-  sed -u 's/^/-----> /'
-}
+# libreoffice
+MAIN_VERSION="6.1"
+VERSION="6.1.3.en-GB-x86_64"
+DOWNLOAD="https://libreoffice.soluzioniopen.com/stable/fresh/LibreOffice-${VERSION}.AppImage"
+FILE_NAME=LibreOffice-${VERSION}.AppImage
 
-echo "LibreOffice: Setting PATH" | arrow
+mkdir -p $CACHE_DIR
+if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
+  echo "-----> downloading LibreOffice AppImage"
+  curl -L $DOWNLOAD > $CACHE_DIR/$FILE_NAME
+
+  echo "-----> extracting LibreOffice from AppImage archive"
+  cd $CACHE_DIR
+  chmod a+x $FILE_NAME
+  ./$FILE_NAME --appimage-extract
+  mv squashfs-root "libreoffice-${VERSION}"
+else
+  echo "file already exists $CACHE_DIR/$FILE_NAME"
+fi
+
+cp -R $CACHE_DIR/libreoffice-${VERSION}/usr $INSTALL_DIR
+cp -R $CACHE_DIR/libreoffice-${VERSION}/opt $INSTALL_DIR
+
 PROFILE_PATH="$BUILD_DIR/.profile.d/libreoffice.sh"
+ACTUAL_INSTALL_PATH="$HOME/vendor/libreoffice"
 mkdir -p $(dirname $PROFILE_PATH)
-
-# Add vendor binaries to the path
-echo 'export OFFICE_PATH="$HOME/.apt/usr/lib/libreoffice"' >> $PROFILE_PATH
-
-cd $APT_DIR/usr/lib/x86_64-linux-gnu
-ln -sv ../libreoffice/program/*.so .
+echo "export PATH=$ACTUAL_INSTALL_PATH/opt/libreoffice$MAIN_VERSION/program:\$PATH" >> $PROFILE_PATH
