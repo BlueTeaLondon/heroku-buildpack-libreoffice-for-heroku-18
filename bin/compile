@@ -11,7 +11,6 @@ mkdir -p $INSTALL_DIR
 CACHE_DIR=$2 # the contents of CACHE_DIR are persisted between builds
 
 # libreoffice
-MAIN_VERSION="6.1"
 VERSION="fresh.basic-x86_64"
 DOWNLOAD="https://libreoffice.soluzioniopen.com/stable/fresh/LibreOffice-${VERSION}.AppImage"
 FILE_NAME=LibreOffice-${VERSION}.AppImage
@@ -36,4 +35,5 @@ cp -R $CACHE_DIR/libreoffice-${VERSION}/opt $INSTALL_DIR
 PROFILE_PATH="$BUILD_DIR/.profile.d/libreoffice.sh"
 ACTUAL_INSTALL_PATH="$HOME/vendor/libreoffice"
 mkdir -p $(dirname $PROFILE_PATH)
-echo "export PATH=$ACTUAL_INSTALL_PATH/opt/libreoffice$MAIN_VERSION/program:\$PATH" >> $PROFILE_PATH
+INSTALLED_VERSION=$(ls $INSTALL_DIR/opt)
+echo "export PATH=$ACTUAL_INSTALL_PATH/opt/$INSTALLED_VERSION/program:\$PATH" >> $PROFILE_PATH
