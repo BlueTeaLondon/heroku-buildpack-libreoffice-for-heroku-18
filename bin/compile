@@ -12,7 +12,7 @@ CACHE_DIR=$2 # the contents of CACHE_DIR are persisted between builds
 
 # libreoffice
 MAIN_VERSION="6.1"
-VERSION="6.1.3.en-GB-x86_64"
+VERSION="fresh.basic-x86_64"
 DOWNLOAD="https://libreoffice.soluzioniopen.com/stable/fresh/LibreOffice-${VERSION}.AppImage"
 FILE_NAME=LibreOffice-${VERSION}.AppImage
 
