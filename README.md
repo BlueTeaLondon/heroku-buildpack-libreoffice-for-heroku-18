@@ -31,4 +31,12 @@ libharfbuzz0b
 libharfbuzz-icu0
 ```
 
+Optionally, create a `LibreOfficeAppImage` file to change the installed version to something other than the latest `fresh`.
+The file should contain only two lines; one for the version and one for the url to an AppImage.
+For example the latest `still` can be installed with:
+```
+still.basic-x86_64
+https://libreoffice.soluzioniopen.com/stable/still/LibreOffice-still.basic-x86_64.AppImage
+```
+
 Redeploy your project after committing the above file, et voilà...!
