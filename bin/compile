@@ -11,8 +11,13 @@ mkdir -p $INSTALL_DIR
 CACHE_DIR=$2 # the contents of CACHE_DIR are persisted between builds
 
 # libreoffice
-VERSION="fresh.basic-x86_64"
-DOWNLOAD="https://libreoffice.soluzioniopen.com/stable/fresh/LibreOffice-${VERSION}.AppImage"
+if [ -f $BUILD_DIR/LibreOfficeAppImage ] ; then
+    VERSION=$(grep -v http $BUILD_DIR/LibreOfficeAppImage | head -n 1)
+    DOWNLOAD=$(grep http $BUILD_DIR/LibreOfficeAppImage | head -n 1)
+else
+    VERSION="fresh.basic-x86_64"
+    DOWNLOAD="https://libreoffice.soluzioniopen.com/stable/fresh/LibreOffice-fresh.basic-x86_64.AppImage"
+fi
 FILE_NAME=LibreOffice-${VERSION}.AppImage
 
 mkdir -p $CACHE_DIR
