@@ -1,6 +1,6 @@
 # Fully working LibreOffice buildpack for the heroku-18 stack 🎉
 
-Shamefully simple, and utilising an official AppImage copy of LibreOffice with its dependencies directly from the vendor... a working buildpack for LibreOffice 6.x (others possibly supported via a variable change) on the heroku-18 stack (others possibly supported but you may be asking for trouble if you try), after a lot of trial & error.
+Shamefully simple, and utilising an official AppImage copy of LibreOffice with its dependencies directly from the vendor... a working buildpack for LibreOffice 6.x (others possibly supported via a config file) on the heroku-18 stack (others possibly supported but you may be asking for trouble if you try), after a lot of trial & error.
 
 Made with love (and out of frustration with incompatibility between LibreOffice 6 and bare-bone heroku-18) by [@geomic](https://github.com/geomic), and with enhancements contributed in kind by [@vesatoivonen](https://github.com/vesatoivonen).
 
