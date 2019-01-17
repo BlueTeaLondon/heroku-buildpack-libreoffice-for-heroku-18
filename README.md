@@ -1,4 +1,4 @@
-# Fully working LibreOffice 6.1.3 buildpack for the heroku-18 stack 🎉
+# Fully working LibreOffice buildpack for the heroku-18 stack 🎉
 
 Shamefully simple, and utilising an official AppImage copy of LibreOffice with its dependencies directly from the vendor... a frustration-free, working buildpack for LibreOffice 6.1.3 (others possibly supported via a variable change) on the heroku-18 stack (others possibly supported but you may be asking for trouble if you try), after a lot of trial & error.
 
@@ -32,10 +32,9 @@ libharfbuzz-icu0
 ```
 
 Optionally, create a `LibreOfficeAppImage` file to change the installed version to something other than the latest `fresh`.
-The file should contain only two lines; one for the version and one for the url to an AppImage.
+The file should contain only an url for an AppImage.
 For example the latest `still` can be installed with:
 ```
-still.basic-x86_64
 https://libreoffice.soluzioniopen.com/stable/still/LibreOffice-still.basic-x86_64.AppImage
 ```
 

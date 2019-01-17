@@ -12,12 +12,12 @@ CACHE_DIR=$2 # the contents of CACHE_DIR are persisted between builds
 
 # libreoffice
 if [ -f $BUILD_DIR/LibreOfficeAppImage ] ; then
-    VERSION=$(grep -v http $BUILD_DIR/LibreOfficeAppImage | head -n 1)
     DOWNLOAD=$(grep http $BUILD_DIR/LibreOfficeAppImage | head -n 1)
 else
-    VERSION="fresh.basic-x86_64"
     DOWNLOAD="https://libreoffice.soluzioniopen.com/stable/fresh/LibreOffice-fresh.basic-x86_64.AppImage"
 fi
+VERSION=$(echo $DOWNLOAD | grep -Poi "(?<=LibreOffice-)[^/]+(?=\.AppImage)")
+VERSION=${VERSION:-default} # avoid empty version if the grep fails to match
 FILE_NAME=LibreOffice-${VERSION}.AppImage
 
 mkdir -p $CACHE_DIR
