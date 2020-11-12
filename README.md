@@ -31,6 +31,8 @@ libxinerama1
 libdbus-glib-1-2
 libharfbuzz0b
 libharfbuzz-icu0
+libx11-xcb1
+libxcb1
 ```
 
 Optionally, create a `LibreOfficeAppImage` file in your application repository to change the installed version to something other than the latest `fresh`.
