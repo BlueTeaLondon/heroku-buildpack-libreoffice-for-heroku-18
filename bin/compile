@@ -41,5 +41,7 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/libreoffice.sh"
 RUNTIME_INSTALL_PATH="\$HOME/vendor/libreoffice"
 mkdir -p $(dirname $PROFILE_PATH)
 INSTALLED_VERSION=$(ls $INSTALL_DIR/opt)
+
+echo "export PATH=$RUNTIME_INSTALL_PATH/usr/bin:\$PATH" >> $PROFILE_PATH
 echo "export PATH=$RUNTIME_INSTALL_PATH/opt/$INSTALLED_VERSION/program:\$PATH" >> $PROFILE_PATH
 echo "export OFFICE_PATH=$RUNTIME_INSTALL_PATH/opt/$INSTALLED_VERSION" >> $PROFILE_PATH
